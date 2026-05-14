@@ -1,14 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown, ChevronRight, Menu, X, Folder, Skull, Music, Star } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
 const files = [
-  { name: "About.tsx", id: "about" },
-  { name: "TechStack.tsx", id: "stack" },
-  { name: "Projects.tsx", id: "projects" },
-  { name: "Experience.tsx", id: "experience" },
-  { name: "Contact.tsx", id: "contact" },
+  { name: "About Me", id: "about" },
+  { name: "TechStack", id: "stack" },
+  { name: "Projects", id: "projects" },
+  { name: "CreativeArtifacts", id: "artifacts" },
+  { name: "Experience", id: "experience" },
+  { name: "Contact", id: "contact" },
 ];
 
 const ReactIcon = ({ size = 14 }: { size?: number }) => (
@@ -60,6 +62,8 @@ const BandIcon = ({ size = 14 }: { size?: number }) => {
 
 export default function Navbar() {
   const { theme } = useTheme();
+  const pathname = usePathname();
+  const router = useRouter();
   const [activeSection, setActiveSection] = useState("hero");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isFolderOpen, setIsFolderOpen] = useState(true);
@@ -85,6 +89,10 @@ export default function Navbar() {
   }, []);
 
   const scrollToSection = (id: string) => {
+    if (pathname !== "/") {
+      router.push(`/#${id}`);
+      return;
+    }
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -131,7 +139,7 @@ export default function Navbar() {
           >
             {isFolderOpen ? <ChevronDown size={14} style={{ marginRight: "4px" }} /> : <ChevronRight size={14} style={{ marginRight: "4px" }} />}
             <Folder size={16} style={{ marginRight: "8px", color: "var(--clr-gold)" }} />
-            <span className="font-display">Hero.tsx</span>
+            <span className="font-display">Welcome</span>
           </div>
 
           {/* Nested Files */}

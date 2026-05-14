@@ -79,8 +79,8 @@
   --hero-gradient: linear-gradient(160deg, #E5E5E5 0%, #C7C1B5 55%, #5C5550 100%);
   /* Hero background orb */
   --hero-orb-gradient: radial-gradient(ellipse at center, rgba(125, 124, 122, 0.9) 0%, transparent 70%);
-  /* Subtle primary tint for button hover */
-  --clr-primary-subtle: rgba(226, 222, 208, 0.08);
+  /* Subtle primary tint for active highlight */
+  --clr-primary-subtle: rgba(60, 50, 43, 0.15);
 
   /* Syntax highlighting — warm, desaturated for Obsidian palette */
   --clr-syntax-keyword: #8A5B3D;
@@ -193,6 +193,24 @@ html {
 body {
   overflow-x: hidden;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 .vertical-section {
@@ -203,8 +221,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 6rem 1.5rem;
-  padding-left: 16rem;
+  padding: 6rem 4rem;
+  padding-left: 20rem;
 }
 
 .vertical-grid {
@@ -439,6 +457,35 @@ body {
   position: relative;
   z-index: 1;
 }
+
+/* =============================================
+   CREATIVE ARTIFACTS UTILITIES
+   ============================================= */
+.scanline-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.1) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.artifact-desaturate {
+  filter: grayscale(0.8) contrast(1.1) brightness(0.9);
+  transition: filter 0.4s ease;
+}
+
+.artifact-clear {
+  filter: grayscale(0) contrast(1) brightness(1);
+}
+
+.lightbox-backdrop {
+  background: radial-gradient(circle at center, rgba(191, 0, 255, 0.15) 0%, #09090B 100%);
+  backdrop-filter: blur(12px);
+}
+
 
 /* =============================================
    MILITARY BORDER (Black Parade style)
@@ -753,13 +800,13 @@ body {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.vscode-sidebar::-webkit-scrollbar {
-  width: 5px;
+.vscode-sidebar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.vscode-sidebar::-webkit-scrollbar-thumb {
-  background: var(--clr-dim);
-  border-radius: 10px;
+.vscode-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar-header {
@@ -782,6 +829,10 @@ body {
   user-select: none;
   transition: all 0.2s;
   color: var(--clr-text);
+}
+
+[data-theme="seventh-trumpet"] .folder-header,
+[data-theme="californication"] .folder-header {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
@@ -816,6 +867,10 @@ body {
   font-size: 0.85rem;
   color: var(--clr-text);
   opacity: 0.8;
+}
+
+[data-theme="seventh-trumpet"] .file,
+[data-theme="californication"] .file {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
