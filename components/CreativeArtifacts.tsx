@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Camera, Aperture, Image as ImageIcon, X, ZoomIn, ChevronRight } from "lucide-react";
+import { Camera, Aperture, Image as ImageIcon, X, ZoomIn, ChevronRight, ArrowLeft } from "lucide-react";
 import { artifacts, Artifact } from "@/data/artifacts";
 
 // --- Sub-components ---
@@ -136,6 +136,22 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
           // {isGalleryPage ? "complete mechanical archive" : "precision in pixels. mechanical vision."}
         </p>
       </motion.div>
+
+      {isGalleryPage && (
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="absolute top-8 right-8 z-50"
+        >
+          <a 
+            href="/"
+            className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-[var(--clr-muted)] hover:text-[var(--clr-primary)] transition-all uppercase group bg-black/20 backdrop-blur-md px-4 py-2 border border-[var(--clr-dim)] hover:border-[var(--clr-primary)]"
+          >
+            Return to Nexus
+            <ArrowLeft size={14} className="rotate-180 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </motion.div>
+      )}
 
       {/* Grid */}
       <div className={`grid grid-cols-1 md:grid-cols-4 gap-4 ${isGalleryPage ? 'auto-rows-[300px]' : 'auto-rows-[180px] md:auto-rows-[220px]'} w-full max-w-7xl mx-auto px-4`}>

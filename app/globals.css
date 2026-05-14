@@ -787,9 +787,9 @@ html::-webkit-scrollbar {
 
 .vscode-sidebar {
   position: fixed;
-  top: 50%;
+  top: 30vh;
   left: 2rem;
-  transform: translateY(-50%);
+  transform: none;
   width: auto;
   height: auto;
   background-color: transparent;
