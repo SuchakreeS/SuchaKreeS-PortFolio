@@ -59,7 +59,6 @@ export default function About() {
       ref={sectionRef}
       className="vertical-section"
       style={{
-        padding: "6rem 1.5rem",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
