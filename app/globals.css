@@ -609,6 +609,7 @@ html::-webkit-scrollbar {
 .section-title {
   font-family: var(--font-display);
   font-weight: 400;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   color: var(--clr-text);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -961,4 +962,109 @@ html::-webkit-scrollbar {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* =============================================
+   CONTAINER PRIMITIVE
+   ============================================= */
+.container-primitive {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* =============================================
+   BUTTON PRIMITIVE
+   ============================================= */
+.btn-primitive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.btn-md {
+  padding: var(--space-3) var(--space-8);
+  font-size: var(--text-xs);
+}
+
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+}
+
+.btn-primary {
+  background: var(--clr-primary);
+  color: #fff;
+  border: 1px solid var(--clr-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--clr-secondary);
+  box-shadow: var(--glow-purple);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--clr-primary);
+  border: 1px solid var(--clr-primary);
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  background: var(--clr-primary-subtle);
+  box-shadow: var(--glow-purple);
+}
+
+/* =============================================
+   BADGE PILL (generalized from About.tsx interest pills)
+   ============================================= */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px var(--space-4);
+  border: 1px solid var(--clr-dim);
+  background: var(--bg-surface);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--clr-muted);
+  border-radius: 2px;
+  transition: all 0.25s;
+}
+
+.badge-pill:hover,
+.badge-pill:focus-visible {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  box-shadow: var(--glow-purple);
+}
+
+.badge-icon {
+  color: var(--clr-primary);
+  display: inline-flex;
+}
+
+/* =============================================
+   SECTION HEADER
+   ============================================= */
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.section-subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--clr-muted);
+  margin-top: var(--space-3);
 }
