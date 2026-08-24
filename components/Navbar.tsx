@@ -235,7 +235,7 @@ export default function Navbar() {
             inset: 0,
             background: "rgba(0,0,0,0.5)",
             backdropFilter: "blur(2px)",
-            zIndex: 1100
+            zIndex: "var(--z-nav)"
           }}
         />
       )}
