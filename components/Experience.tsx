@@ -1,6 +1,7 @@
 "use client";
 import { Briefcase, Calendar, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const experiences = [
   {
@@ -40,23 +41,8 @@ export default function Experience() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ marginBottom: "3rem" }}
       >
-        <div style={{ textAlign: "center", marginBottom: "1rem" }}>
-          <h2 className="section-title" style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)" }}>
-            Experience
-          </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.85rem",
-              color: "var(--clr-muted)",
-              marginTop: "0.75rem",
-            }}
-          >
-            // the riffs that built the repertoire
-          </p>
-        </div>
+        <SectionHeader title="Experience" subtitle="// the riffs that built the repertoire" />
       </motion.div>
 
       {/* Timeline */}
