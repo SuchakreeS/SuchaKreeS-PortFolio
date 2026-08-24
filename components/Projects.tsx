@@ -86,7 +86,7 @@ export default function Projects() {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
           >
-            <Card as="article" className={`project-card-${p.id}`} style={{ padding: "1.75rem" }}>
+            <Card as="article" className={`project-card-${p.id}`} style={{ padding: "1.75rem", height: "100%" }}>
             {/* Card Header */}
               <div
                 style={{

@@ -280,6 +280,10 @@ const DriftingCodeBackground = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     let animationId: number;
     let width = canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;
     let height = canvas.height = canvas.parentElement?.clientHeight || 600;
@@ -337,7 +341,9 @@ const DriftingCodeBackground = () => {
         }
       });
 
-      animationId = requestAnimationFrame(render);
+      if (!prefersReducedMotion) {
+        animationId = requestAnimationFrame(render);
+      }
     };
 
     render();
