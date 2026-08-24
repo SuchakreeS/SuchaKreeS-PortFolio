@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Aperture, Image as ImageIcon, X, ZoomIn, ChevronRight, ArrowLeft } from "lucide-react";
 import { artifacts, Artifact } from "@/data/artifacts";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 // --- Sub-components ---
 
@@ -122,14 +123,11 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="mb-8 text-center"
       >
-        <h2 className="section-title" style={{ fontSize: "clamp(1.5rem, 4vw, 2.4rem)" }}>
-          {isGalleryPage ? "Technical Gallery" : "Creative Artifacts"}
-        </h2>
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--clr-muted)] mt-2">
-          // {isGalleryPage ? "complete mechanical archive" : "precision in pixels. mechanical vision."}
-        </p>
+        <SectionHeader
+          title={isGalleryPage ? "Technical Gallery" : "Creative Artifacts"}
+          subtitle={`// ${isGalleryPage ? "complete mechanical archive" : "precision in pixels. mechanical vision."}`}
+        />
       </motion.div>
 
       {isGalleryPage && (
@@ -207,6 +205,7 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
               <button
                 className="absolute top-4 right-4 text-[var(--clr-text)] hover:text-[var(--clr-primary)] transition-colors p-2 bg-black/40 backdrop-blur-md rounded-full border border-[var(--clr-dim)]"
                 onClick={() => setSelectedId(null)}
+                aria-label="Close artifact preview"
               >
                 <X size={24} />
               </button>
