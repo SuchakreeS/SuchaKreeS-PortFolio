@@ -184,6 +184,15 @@ export default function Navbar() {
               scrollToSection('hero');
               setIsFolderOpen(!isFolderOpen);
             }}
+            tabIndex={0}
+            role="button"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                scrollToSection('hero');
+                setIsFolderOpen(!isFolderOpen);
+              }
+            }}
           >
             {isFolderOpen ? <ChevronDown size={14} style={{ marginRight: "4px" }} /> : <ChevronRight size={14} style={{ marginRight: "4px" }} />}
             <Folder size={16} style={{ marginRight: "8px", color: "var(--clr-gold)" }} />
@@ -198,6 +207,14 @@ export default function Navbar() {
                   key={file.id}
                   className={`file ${activeSection === file.id ? 'active' : ''}`}
                   onClick={() => scrollToSection(file.id)}
+                  tabIndex={0}
+                  role="button"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      scrollToSection(file.id);
+                    }
+                  }}
                 >
                   <BandIcon size={14} />
                   <span className="font-display" style={{ marginLeft: "8px" }}>{file.name}</span>
