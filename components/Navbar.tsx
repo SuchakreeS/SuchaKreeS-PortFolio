@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown, ChevronRight, Menu, X, Folder, Skull, Music, Star } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
@@ -67,6 +67,43 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("hero");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isFolderOpen, setIsFolderOpen] = useState(true);
+  const mobileToggleRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!isMobileOpen) return;
+
+    const drawer = drawerRef.current;
+    const focusableSelector =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusableEls = drawer
+      ? Array.from(drawer.querySelectorAll<HTMLElement>(focusableSelector))
+      : [];
+    focusableEls[0]?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMobileOpen(false);
+        mobileToggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || focusableEls.length === 0) return;
+
+      const first = focusableEls[0];
+      const last = focusableEls[focusableEls.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,8 +141,12 @@ export default function Navbar() {
     <>
       {/* Mobile Toggle Button */}
       <button
+        ref={mobileToggleRef}
         className="mobile-menu-btn"
         onClick={() => setIsMobileOpen(!isMobileOpen)}
+        aria-label={isMobileOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={isMobileOpen}
+        aria-controls="vscode-sidebar-nav"
         style={{
           position: "fixed",
           top: "1rem",
@@ -113,7 +154,7 @@ export default function Navbar() {
           zIndex: 1101,
           background: "var(--bg-elevated)",
           border: "1px solid var(--clr-dim)",
-          padding: "0.5rem",
+          padding: "0.75rem",
           borderRadius: "4px",
           display: "none",
           color: "var(--clr-text)"
@@ -123,7 +164,14 @@ export default function Navbar() {
       </button>
 
       {/* Sidebar */}
-      <nav className={`vscode-sidebar ${isMobileOpen ? 'open' : ''}`}>
+      <nav
+        ref={drawerRef}
+        id="vscode-sidebar-nav"
+        className={`vscode-sidebar ${isMobileOpen ? 'open' : ''}`}
+        role={isMobileOpen ? "dialog" : undefined}
+        aria-modal={isMobileOpen ? true : undefined}
+        aria-label="Site navigation"
+      >
         <div className="sidebar-header">
           Explorer
         </div>

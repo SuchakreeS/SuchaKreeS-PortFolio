@@ -946,6 +946,13 @@ html::-webkit-scrollbar {
   .mobile-menu-btn {
     display: block !important;
   }
+
+  .folder-header,
+  .file {
+    min-height: 44px;
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+  }
 }
 
 /* =============================================
