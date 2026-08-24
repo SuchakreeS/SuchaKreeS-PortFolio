@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Beer, Cpu, Music } from "lucide-react";
 import { motion } from "framer-motion";
+import Badge from "@/components/ui/Badge";
 
 export default function About() {
   const [textIndex, setTextIndex] = useState(0);
@@ -12,6 +13,11 @@ export default function About() {
   const startTyping = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     if (timerRef.current) clearTimeout(timerRef.current);
+
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setTextIndex(fullText.length);
+      return;
+    }
 
     const type = () => {
       setTextIndex(0);
@@ -92,41 +98,9 @@ export default function About() {
 
           {/* Interest pills */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
-            {[
-              { icon: <Cpu size={14} />, label: "Zero-Error Mindset" },
-              { icon: <Beer size={14} />, label: "B.S. Fermentation Tech" },
-              { icon: <Music size={14} />, label: "Industrial Precision" },
-            ].map(({ icon, label }) => (
-              <span
-                key={label}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  padding: "6px 14px",
-                  border: "1px solid var(--clr-dim)",
-                  background: "var(--bg-surface)",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.75rem",
-                  color: "var(--clr-muted)",
-                  borderRadius: "2px",
-                  transition: "all 0.25s",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--clr-primary)";
-                  (e.currentTarget as HTMLSpanElement).style.color = "var(--clr-primary)";
-                  (e.currentTarget as HTMLSpanElement).style.boxShadow = "var(--glow-purple)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--clr-dim)";
-                  (e.currentTarget as HTMLSpanElement).style.color = "var(--clr-muted)";
-                  (e.currentTarget as HTMLSpanElement).style.boxShadow = "none";
-                }}
-              >
-                <span style={{ color: "var(--clr-primary)" }}>{icon}</span>
-                {label}
-              </span>
-            ))}
+            <Badge icon={<Cpu size={14} />}>Zero-Error Mindset</Badge>
+            <Badge icon={<Beer size={14} />}>B.S. Fermentation Tech</Badge>
+            <Badge icon={<Music size={14} />}>Industrial Precision</Badge>
           </div>
         </motion.div>
 
