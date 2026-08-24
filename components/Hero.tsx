@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { ChevronDown, Zap, Code2, Skull } from "lucide-react";
 import { motion } from "framer-motion";
+import Button from "@/components/ui/Button";
 
 const TAGLINES = [
   "Full-Stack Developer",
@@ -16,6 +17,10 @@ export default function Hero() {
   const [typing, setTyping] = useState(true);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplayed(TAGLINES[0]);
+      return;
+    }
     const target = TAGLINES[taglineIdx];
     if (typing) {
       if (displayed.length < target.length) {
@@ -142,58 +147,12 @@ export default function Hero() {
           className="animate-fade-up delay-400"
           style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center", marginBottom: "4rem" }}
         >
-          <a
-            href="#projects"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.8rem",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              padding: "0.75rem 2rem",
-              background: "var(--clr-primary)",
-              color: "#fff",
-              border: "none",
-              clipPath: "polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%)",
-              textDecoration: "none",
-              transition: "background 0.25s, box-shadow 0.25s",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "var(--glow-purple)";
-              (e.currentTarget as HTMLAnchorElement).style.background = "var(--clr-secondary)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-              (e.currentTarget as HTMLAnchorElement).style.background = "var(--clr-primary)";
-            }}
-          >
+          <Button href="#projects" variant="primary">
             View Projects
-          </a>
-          <a
-            href="#contact"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.8rem",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              padding: "0.75rem 2rem",
-              background: "transparent",
-              color: "var(--clr-primary)",
-              border: "1px solid var(--clr-primary)",
-              clipPath: "polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%)",
-              textDecoration: "none",
-              transition: "all 0.25s",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = "rgba(168,85,247,0.12)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "var(--glow-purple)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-            }}
-          >
+          </Button>
+          <Button href="#contact" variant="outline">
             Get in Touch
-          </a>
+          </Button>
         </div>
       </motion.div>
 
