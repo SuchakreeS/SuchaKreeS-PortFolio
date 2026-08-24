@@ -111,15 +111,10 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
   const selectedArtifact = artifacts.find((a) => a.id === selectedId);
 
   return (
-    <section 
-      id="artifacts" 
-      className={`vertical-section ${!isGalleryPage ? 'h-screen overflow-hidden' : 'min-h-screen'}`} 
-      style={{ 
-        background: "var(--bg-void)", 
-        paddingTop: isGalleryPage ? "10rem" : undefined,
-        paddingLeft: isGalleryPage ? "20rem" : undefined,
-        paddingRight: isGalleryPage ? "4rem" : undefined
-      }}
+    <section
+      id="artifacts"
+      className={`vertical-section ${!isGalleryPage ? 'h-screen overflow-hidden' : 'min-h-screen gallery-page-section'}`}
+      style={{ background: "var(--bg-void)" }}
     >
       {/* Header */}
       <motion.div
