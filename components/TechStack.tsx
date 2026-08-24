@@ -5,6 +5,7 @@ import {
   Atom, Database, Code, Terminal, Server, HelpCircle,
   Cpu, Layout, Layers, RefreshCw, GitBranch, Ship, Globe
 } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 interface TechItem {
   key: string;
@@ -353,6 +354,15 @@ export default function TechStack() {
   const [focusedTech, setFocusedTech] = useState<TechItem>(techSkills[1]); // Default React.js / Next.js
   const [activeKey, setActiveKey] = useState<string | null>(null);
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(query.matches);
+    const handleChange = () => setPrefersReducedMotion(query.matches);
+    query.addEventListener("change", handleChange);
+    return () => query.removeEventListener("change", handleChange);
+  }, []);
 
   const getThemeKeycapColors = (colorName: string) => {
     if (colorName === "blue" || colorName === "light-blue") {
@@ -440,20 +450,10 @@ export default function TechStack() {
       <div className="relative z-10 w-full" style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* Header Block */}
-        <div className="text-center md:text-left mb-12">
-          <h2
-            className="font-display-bold tracking-[0.16em] uppercase"
-            style={{
-              fontSize: "clamp(2rem, 5vw, 3.2rem)",
-              color: "var(--clr-text)"
-            }}
-          >
-            SKILLS
-          </h2>
-          <p className="font-mono text-xs text-emerald-500/70 tracking-widest mt-1">
-            (hint: press any corresponding letter on your physical keyboard)
-          </p>
-        </div>
+        <SectionHeader
+          title="Skills"
+          subtitle="(hint: press any corresponding letter on your physical keyboard)"
+        />
 
         {/* Console layout columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -521,6 +521,7 @@ export default function TechStack() {
                     return (
                       <motion.button
                         key={skill.key}
+                        aria-label={`${skill.name} — press ${skill.key} key`}
                         onClick={() => handleKeyClick(skill)}
                         onMouseEnter={() => handleKeyHover(skill)}
                         onMouseLeave={() => setHoveredKey(null)}
@@ -559,17 +560,25 @@ export default function TechStack() {
                           {hoveredKey === skill.key && (
                             <motion.div
                               initial={{ opacity: 0, y: 0, scale: 0.6, z: 0 }}
-                              animate={{
-                                opacity: [0, 0.8, 0.5, 0.9, 0.6, 0.8], // futuristic glitch flicker
-                                y: -50,
-                                scale: 1.45,
-                                z: 40
-                              }}
+                              animate={
+                                prefersReducedMotion
+                                  ? { opacity: 0.8, y: -50, scale: 1.45, z: 40 }
+                                  : {
+                                      opacity: [0, 0.8, 0.5, 0.9, 0.6, 0.8], // futuristic glitch flicker
+                                      y: -50,
+                                      scale: 1.45,
+                                      z: 40,
+                                    }
+                              }
                               exit={{ opacity: 0, y: 0, scale: 0.6 }}
-                              transition={{
-                                y: { type: "spring", stiffness: 120, damping: 10 },
-                                opacity: { duration: 1.2, repeat: Infinity, repeatType: "reverse" }
-                              }}
+                              transition={
+                                prefersReducedMotion
+                                  ? { y: { type: "spring", stiffness: 120, damping: 10 } }
+                                  : {
+                                      y: { type: "spring", stiffness: 120, damping: 10 },
+                                      opacity: { duration: 1.2, repeat: Infinity, repeatType: "reverse" },
+                                    }
+                              }
                               className="absolute pointer-events-none z-30 flex flex-col items-center justify-center"
                               style={{
                                 transformStyle: "preserve-3d",
@@ -615,6 +624,7 @@ export default function TechStack() {
                     return (
                       <motion.button
                         key={skill.key}
+                        aria-label={`${skill.name} — press ${skill.key} key`}
                         onClick={() => handleKeyClick(skill)}
                         onMouseEnter={() => handleKeyHover(skill)}
                         onMouseLeave={() => setHoveredKey(null)}
@@ -653,17 +663,25 @@ export default function TechStack() {
                           {hoveredKey === skill.key && (
                             <motion.div
                               initial={{ opacity: 0, y: 0, scale: 0.6, z: 0 }}
-                              animate={{
-                                opacity: [0, 0.8, 0.5, 0.9, 0.6, 0.8], // futuristic glitch flicker
-                                y: -50,
-                                scale: 1.45,
-                                z: 40
-                              }}
+                              animate={
+                                prefersReducedMotion
+                                  ? { opacity: 0.8, y: -50, scale: 1.45, z: 40 }
+                                  : {
+                                      opacity: [0, 0.8, 0.5, 0.9, 0.6, 0.8], // futuristic glitch flicker
+                                      y: -50,
+                                      scale: 1.45,
+                                      z: 40,
+                                    }
+                              }
                               exit={{ opacity: 0, y: 0, scale: 0.6 }}
-                              transition={{
-                                y: { type: "spring", stiffness: 120, damping: 10 },
-                                opacity: { duration: 1.2, repeat: Infinity, repeatType: "reverse" }
-                              }}
+                              transition={
+                                prefersReducedMotion
+                                  ? { y: { type: "spring", stiffness: 120, damping: 10 } }
+                                  : {
+                                      y: { type: "spring", stiffness: 120, damping: 10 },
+                                      opacity: { duration: 1.2, repeat: Infinity, repeatType: "reverse" },
+                                    }
+                              }
                               className="absolute pointer-events-none z-30 flex flex-col items-center justify-center"
                               style={{
                                 transformStyle: "preserve-3d",
@@ -709,6 +727,7 @@ export default function TechStack() {
                     return (
                       <motion.button
                         key={skill.key}
+                        aria-label={`${skill.name} — press ${skill.key} key`}
                         onClick={() => handleKeyClick(skill)}
                         onMouseEnter={() => handleKeyHover(skill)}
                         onMouseLeave={() => setHoveredKey(null)}
@@ -747,17 +766,25 @@ export default function TechStack() {
                           {hoveredKey === skill.key && (
                             <motion.div
                               initial={{ opacity: 0, y: 0, scale: 0.6, z: 0 }}
-                              animate={{
-                                opacity: [0, 0.8, 0.5, 0.9, 0.6, 0.8], // futuristic glitch flicker
-                                y: -50,
-                                scale: 1.45,
-                                z: 40
-                              }}
+                              animate={
+                                prefersReducedMotion
+                                  ? { opacity: 0.8, y: -50, scale: 1.45, z: 40 }
+                                  : {
+                                      opacity: [0, 0.8, 0.5, 0.9, 0.6, 0.8], // futuristic glitch flicker
+                                      y: -50,
+                                      scale: 1.45,
+                                      z: 40,
+                                    }
+                              }
                               exit={{ opacity: 0, y: 0, scale: 0.6 }}
-                              transition={{
-                                y: { type: "spring", stiffness: 120, damping: 10 },
-                                opacity: { duration: 1.2, repeat: Infinity, repeatType: "reverse" }
-                              }}
+                              transition={
+                                prefersReducedMotion
+                                  ? { y: { type: "spring", stiffness: 120, damping: 10 } }
+                                  : {
+                                      y: { type: "spring", stiffness: 120, damping: 10 },
+                                      opacity: { duration: 1.2, repeat: Infinity, repeatType: "reverse" },
+                                    }
+                              }
                               className="absolute pointer-events-none z-30 flex flex-col items-center justify-center"
                               style={{
                                 transformStyle: "preserve-3d",
