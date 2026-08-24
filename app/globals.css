@@ -58,6 +58,31 @@
   --tech-border: var(--clr-dim);
   --tech-text: var(--clr-text);
   --btn-glow: var(--glow-purple);
+
+  /* ---------- Spacing Scale (4px base rhythm) ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* ---------- Type Scale ---------- */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 3rem;
+
+  /* ---------- Z-Index Scale ---------- */
+  --z-nav: 1000;
+  --z-overlay: 1100;
+  --z-modal: 2000;
 }
 
 /* ---------- Black Parade Theme ---------- */
@@ -179,7 +204,7 @@ body {
   background-color: var(--bg-void);
   color: var(--clr-text);
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: var(--text-base);
   line-height: 1.7;
   position: relative;
   transition: background-color 0.4s ease, color 0.4s ease;
@@ -211,6 +236,14 @@ html {
 
 html::-webkit-scrollbar {
   display: none;
+}
+
+/* =============================================
+   FOCUS VISIBILITY
+   ============================================= */
+:focus-visible {
+  outline: 2px solid var(--clr-primary);
+  outline-offset: 2px;
 }
 
 .vertical-section {
@@ -912,5 +945,20 @@ html::-webkit-scrollbar {
 
   .mobile-menu-btn {
     display: block !important;
+  }
+}
+
+/* =============================================
+   REDUCED MOTION
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-flicker,
+  .animate-pulse-glow,
+  .glitch:hover,
+  .glitch:hover::before,
+  .glitch:hover::after {
+    animation: none !important;
+    transition: none !important;
   }
 }
