@@ -1,5 +1,7 @@
 "use client";
 import { Mail, Github, Twitter, Linkedin, Send } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Button from "@/components/ui/Button";
 
 const socials = [
   { icon: <Github size={20} />, label: "GitHub", href: "https://github.com/SuchakreeS", handle: "SuchakreeS" },
@@ -25,12 +27,7 @@ export default function Contact() {
           ))}
         </div>
 
-        <h2
-          className="section-title"
-          style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", marginBottom: "1rem" }}
-        >
-          Get In Touch
-        </h2>
+        <SectionHeader title="Get In Touch" />
         <p
           style={{
             fontFamily: "var(--font-mono)",
@@ -46,40 +43,13 @@ export default function Contact() {
         </p>
 
         {/* Email CTA */}
-        <a
-          href="mailto:suchakreesattanusorn@gmail.com"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "10px",
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.85rem",
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            padding: "1rem 2.5rem",
-            background: "transparent",
-            color: "var(--clr-primary)",
-            border: "1px solid var(--clr-primary)",
-            textDecoration: "none",
-            clipPath: "polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%)",
-            transition: "all 0.3s",
-            marginBottom: "3rem",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background = "var(--clr-primary)";
-            (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "var(--glow-purple)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-            (e.currentTarget as HTMLAnchorElement).style.color = "var(--clr-primary)";
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-          }}
-        >
-          <Mail size={16} />
-          Say Hello
-          <Send size={14} />
-        </a>
+        <div style={{ marginBottom: "3rem" }}>
+          <Button href="mailto:suchakreesattanusorn@gmail.com" variant="outline">
+            <Mail size={16} />
+            Say Hello
+            <Send size={14} />
+          </Button>
+        </div>
 
         {/* Socials */}
         <div
