@@ -1020,10 +1020,13 @@ html::-webkit-scrollbar {
   border: 1px solid var(--clr-primary);
 }
 
-.btn-primary:hover,
-.btn-primary:focus-visible {
+.btn-primary:hover {
   background: var(--clr-secondary);
   box-shadow: var(--glow-purple);
+}
+
+.btn-primary:focus-visible {
+  background: var(--clr-secondary);
 }
 
 .btn-outline {
@@ -1032,10 +1035,13 @@ html::-webkit-scrollbar {
   border: 1px solid var(--clr-primary);
 }
 
-.btn-outline:hover,
-.btn-outline:focus-visible {
+.btn-outline:hover {
   background: var(--clr-primary-subtle);
   box-shadow: var(--glow-purple);
+}
+
+.btn-outline:focus-visible {
+  background: var(--clr-primary-subtle);
 }
 
 /* =============================================
