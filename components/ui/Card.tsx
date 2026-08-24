@@ -5,6 +5,7 @@ interface CardProps {
   accentColor?: string;
   className?: string;
   as?: ElementType;
+  style?: CSSProperties;
 }
 
 export default function Card({
@@ -12,8 +13,9 @@ export default function Card({
   accentColor,
   className = "",
   as: Tag = "div",
+  style: styleProp,
 }: CardProps) {
-  const style: CSSProperties | undefined = accentColor
+  const accentStyle: CSSProperties | undefined = accentColor
     ? ({
         "--card-border": accentColor,
         "--current-card-glow": `0 0 14px ${accentColor}99, 0 0 36px ${accentColor}33`,
@@ -21,7 +23,7 @@ export default function Card({
     : undefined;
 
   return (
-    <Tag className={`industrial-card ${className}`.trim()} style={style}>
+    <Tag className={`industrial-card ${className}`.trim()} style={{ ...accentStyle, ...styleProp }}>
       {children}
     </Tag>
   );

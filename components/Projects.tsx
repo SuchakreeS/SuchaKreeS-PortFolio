@@ -1,6 +1,9 @@
 "use client";
 import { ExternalLink, Github, Smartphone, Sunset, Gauge } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
 
 interface Project {
   id: string;
@@ -70,36 +73,20 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ marginBottom: "3rem" }}
       >
-        <div style={{ textAlign: "center", marginBottom: "1rem" }}>
-          <h2 className="section-title" style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)" }}>
-            Projects
-          </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.85rem",
-              color: "var(--clr-muted)",
-              marginTop: "0.75rem",
-            }}
-          >
-            // three acts. one vision.
-          </p>
-        </div>
+        <SectionHeader title="Projects" subtitle="// three acts. one vision." />
       </motion.div>
 
       <div className="vertical-grid">
         {projects.map((p, i) => (
-          <motion.article
+          <motion.div
             key={p.id}
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
-            className={`industrial-card project-card-${p.id}`}
-            style={{ padding: "1.75rem" }}
           >
+            <Card as="article" className={`project-card-${p.id}`} style={{ padding: "1.75rem" }}>
             {/* Card Header */}
               <div
                 style={{
@@ -126,36 +113,10 @@ export default function Projects() {
                 </div>
                 <div style={{ display: "flex", gap: "8px" }}>
                   {p.links.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "4px",
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.65rem",
-                        letterSpacing: "0.1em",
-                        color: "var(--clr-muted)",
-                        textDecoration: "none",
-                        border: "1px solid var(--clr-dim)",
-                        padding: "4px 8px",
-                        transition: "all 0.2s",
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLAnchorElement).style.color = "var(--clr-primary)";
-                        (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--clr-primary)";
-                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "var(--glow-purple)";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLAnchorElement).style.color = "var(--clr-muted)";
-                        (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--clr-dim)";
-                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-                      }}
-                    >
+                    <Button key={link.label} href={link.href} variant="outline" size="sm">
                       {link.icon}
                       {link.label}
-                    </a>
+                    </Button>
                   ))}
                 </div>
               </div>
@@ -230,7 +191,8 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-            </motion.article>
+            </Card>
+          </motion.div>
           ))}
         </div>
     </section>
