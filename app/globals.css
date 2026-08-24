@@ -815,6 +815,7 @@ html::-webkit-scrollbar {
   flex-direction: column;
   margin-left: 0;
   width: 100%;
+  padding-bottom: var(--footer-height);
 }
 
 .vscode-sidebar {
@@ -1065,4 +1066,17 @@ html::-webkit-scrollbar {
   font-size: var(--text-sm);
   color: var(--clr-muted);
   margin-top: var(--space-3);
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+:root {
+  --footer-height: 3.25rem;
+}
+
+@media (max-width: 480px) {
+  .footer-signature {
+    display: none;
+  }
 }

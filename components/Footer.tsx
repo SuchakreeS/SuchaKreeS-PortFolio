@@ -66,6 +66,7 @@ export default function Footer() {
 
         {/* Center */}
         <p
+          className="footer-signature"
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "0.72rem",

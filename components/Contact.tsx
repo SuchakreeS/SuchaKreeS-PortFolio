@@ -15,7 +15,6 @@ export default function Contact() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        paddingBottom: "100px", // space for sticky footer
       }}
     >
       <div style={{ maxWidth: "800px", width: "100%", margin: "0 auto", textAlign: "center" }}>
