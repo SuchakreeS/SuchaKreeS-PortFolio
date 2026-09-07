@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import ThemeGate from "@/components/ThemeGate";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>
-          {children}
+          <ThemeGate>{children}</ThemeGate>
         </ThemeProvider>
       </body>
     </html>

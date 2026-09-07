@@ -199,7 +199,7 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
               <img
                 src={selectedArtifact.imageUrl}
                 alt={selectedArtifact.title}
-                className="max-w-full max-h-full object-contain border border-[var(--clr-dim)] shadow-[0_0_50px_rgba(191,0,255,0.2)]"
+                className="max-w-full max-h-full object-contain border border-[var(--clr-dim)] shadow-[0_0_50px_rgba(155,111,209,0.2)]"
               />
               
               <button

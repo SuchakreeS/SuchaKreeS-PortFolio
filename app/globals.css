@@ -13,28 +13,28 @@
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  --bg-void: #1B1B1E;
-  --bg-void-rgb: 27, 27, 30;
-  --bg-surface: #26262B;
-  --bg-elevated: #1E1E2A;
-  --bg-bruised-slate: #1A1528;
-  --clr-primary: #BF00FF;
-  --clr-secondary: #6B21A8;
-  --clr-silver: #C0C0C0;
-  --clr-gold: #D4AF37;
-  --clr-dim: #3F3F46;
-  --clr-text: #E4E4E7;
-  --clr-muted: #71717A;
+  --bg-void: #0B0812;
+  --bg-void-rgb: 11, 8, 18;
+  --bg-surface: #150F22;
+  --bg-elevated: #1C1430;
+  --bg-bruised-slate: #17102A;
+  --clr-primary: #9B6FD1;
+  --clr-secondary: #4B2E73;
+  --clr-silver: #C9B8E0;
+  --clr-gold: #E8DFFA;
+  --clr-dim: #2C2140;
+  --clr-text: #E8E2F5;
+  --clr-muted: #8A7BA8;
 
-  /* Hero name gradient */
-  --hero-gradient: linear-gradient(160deg, #FFFFFF 0%, #E8B4FF 35%, #BF00FF 75%, #6B21A8 100%);
+  /* Hero name gradient — engraved lavender-on-black, à la "Sounding the Seventh Trumpet" */
+  --hero-gradient: linear-gradient(160deg, #FFFFFF 0%, #D6C4F0 35%, #9B6FD1 75%, #4B2E73 100%);
   /* Hero background orb */
-  --hero-orb-gradient: radial-gradient(ellipse at center, rgba(191, 0, 255, 0.3) 0%, transparent 70%);
+  --hero-orb-gradient: radial-gradient(ellipse at center, rgba(155, 111, 209, 0.3) 0%, transparent 70%);
   /* Subtle primary tint for button hover */
-  --clr-primary-subtle: rgba(168, 85, 247, 0.12);
+  --clr-primary-subtle: rgba(155, 111, 209, 0.12);
 
   /* Syntax highlighting in code block */
-  --clr-syntax-keyword: #7C3AED;
+  --clr-syntax-keyword: #9B6FD1;
   --clr-syntax-prop: #60A5FA;
   --clr-syntax-string: #34D399;
   --clr-syntax-linenum: #3f3f46;
@@ -44,8 +44,8 @@
   --clr-cat-backend: #3B82F6;
   --clr-cat-tooling: #10B981;
 
-  --glow-purple: 0 0 14px #BF00FF99, 0 0 36px #BF00FF33;
-  --glow-silver: 0 0 8px #C0C0C088;
+  --glow-purple: 0 0 14px #9B6FD199, 0 0 36px #9B6FD133;
+  --glow-silver: 0 0 8px #C9B8E088;
   --font-display: 'Cinzel', serif;
   --font-mono: 'JetBrains Mono', monospace;
 
@@ -327,22 +327,22 @@ html::-webkit-scrollbar {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   padding: 2px 10px;
-  background: #0D0B14;
-  border: 1px solid #2D2540;
-  color: #BF00FF;
+  background: #120D1E;
+  border: 1px solid #2C2140;
+  color: #9B6FD1;
   letter-spacing: 0.04em;
   position: relative;
 }
 
 .code-snippet::before {
   content: '<';
-  color: #6B21A8;
+  color: #4B2E73;
   margin-right: 2px;
 }
 
 .code-snippet::after {
   content: '/>';
-  color: #6B21A8;
+  color: #4B2E73;
   margin-left: 2px;
 }
 
@@ -470,14 +470,14 @@ html::-webkit-scrollbar {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(191, 0, 255, 0.05) 0%, transparent 55%);
+  background: linear-gradient(135deg, rgba(155, 111, 209, 0.05) 0%, transparent 55%);
   pointer-events: none;
   z-index: 0;
 }
 
 .industrial-card:hover {
   border-color: var(--card-border);
-  box-shadow: var(--current-card-glow, var(--card-glow)), inset 0 0 24px rgba(191, 0, 255, 0.06);
+  box-shadow: var(--current-card-glow, var(--card-glow)), inset 0 0 24px rgba(155, 111, 209, 0.06);
   transform: translateY(-3px);
 }
 
@@ -534,7 +534,7 @@ html::-webkit-scrollbar {
 }
 
 .lightbox-backdrop {
-  background: radial-gradient(circle at center, rgba(191, 0, 255, 0.15) 0%, #09090B 100%);
+  background: radial-gradient(circle at center, rgba(155, 111, 209, 0.15) 0%, #0B0812 100%);
   backdrop-filter: blur(12px);
 }
 

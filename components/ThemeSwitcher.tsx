@@ -1,26 +1,6 @@
 "use client";
 import { useTheme } from "./ThemeProvider";
-
-const themes = [
-  {
-    id: "seventh-trumpet" as const,
-    label: "Seventh Trumpet",
-    dot: "#BF00FF",
-    description: "Electric Amethyst / Gothic Dark",
-  },
-  {
-    id: "black-parade" as const,
-    label: "Black Parade",
-    dot: "#E2DED0",
-    description: "Vintage Bone / Obsidian",
-  },
-  {
-    id: "californication" as const,
-    label: "Californication",
-    dot: "#F97316",
-    description: "Vivid Orange / Early 2000s Metal",
-  },
-];
+import { themes } from "./themes";
 
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();

@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-type Theme = "seventh-trumpet" | "black-parade" | "californication";
+export type Theme = "seventh-trumpet" | "black-parade" | "californication";
 
 interface ThemeContextValue {
   theme: Theme;
