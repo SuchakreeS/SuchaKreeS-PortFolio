@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChevronDown, ChevronRight, Menu, X, Folder, Skull, Music, Star } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, X, Folder, Skull, Music, Star, Download } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { themes } from "./themes";
 
@@ -210,6 +210,17 @@ export default function Navbar() {
               ))}
             </div>
           )}
+
+          {/* Resume download — sibling to the Welcome folder, always visible */}
+          <a
+            href="/Suchakree-Resume.pdf"
+            download
+            className="file"
+            style={{ marginTop: "6px", textDecoration: "none" }}
+          >
+            <Download size={14} style={{ marginRight: "8px" }} />
+            <span className="font-display">resume.pdf</span>
+          </a>
         </div>
       </nav>
 
