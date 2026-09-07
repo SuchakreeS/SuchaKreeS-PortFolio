@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown, ChevronRight, Menu, X, Folder, Skull, Music, Star } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
+import { themes } from "./themes";
 
 const files = [
   { name: "About Me", id: "about" },
@@ -27,20 +28,7 @@ const ReactIcon = ({ size = 14 }: { size?: number }) => (
 const BandIcon = ({ size = 14 }: { size?: number }) => {
   const { theme } = useTheme();
 
-  const getIconSrc = () => {
-    switch (theme) {
-      case "seventh-trumpet":
-        return "/Resource/A7X2.svg";
-      case "black-parade":
-        return "/Resource/MCR2.svg";
-      case "californication":
-        return "/Resource/RHCP.svg";
-      default:
-        return null;
-    }
-  };
-
-  const src = getIconSrc();
+  const src = themes.find((t) => t.id === theme)?.logo ?? null;
 
   if (!src) return <ReactIcon size={size} />;
 

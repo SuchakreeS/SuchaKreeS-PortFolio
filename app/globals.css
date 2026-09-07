@@ -44,6 +44,10 @@
   --clr-cat-backend: #3B82F6;
   --clr-cat-tooling: #10B981;
 
+  /* Project status badges */
+  --status-live: #34D399;
+  --status-dev: #F59E0B;
+
   --glow-purple: 0 0 14px #9B6FD199, 0 0 36px #9B6FD133;
   --glow-silver: 0 0 8px #C9B8E088;
   --font-display: 'Cinzel', serif;
@@ -52,10 +56,10 @@
   /* Project Card & Tech Stack Dynamic Variables */
   --project-accent-wong: #990000;
   --project-accent-velvet: #7A0000;
-  --project-accent-luxe: #4A0000;
+  --project-accent-luxe: #A83232;
   --project-accent-helena: #8B0000;
   --project-accent-steam: #B22222;
-  --project-accent-poker: #5C0000;
+  --project-accent-poker: #B8433A;
   --card-glow: var(--glow-purple);
   --card-border: var(--clr-primary);
   --tech-border: var(--clr-dim);
@@ -121,6 +125,10 @@
   --clr-cat-backend: #8B9EA8;
   --clr-cat-tooling: #7A8F7A;
 
+  /* Project status badges */
+  --status-live: #7A8F7A;
+  --status-dev: #C9B98B;
+
   --glow-purple: 0 0 14px rgba(26, 26, 26, 0.4), 0 0 36px rgba(26, 26, 26, 0.2);
   --glow-silver: 0 0 8px #7D7C7A88;
 
@@ -171,6 +179,10 @@
   --clr-cat-frontend: #F97316;
   --clr-cat-backend: #0EA5E9;
   --clr-cat-tooling: #FACC15;
+
+  /* Project status badges */
+  --status-live: #22C55E;
+  --status-dev: #FACC15;
 
   --glow-purple: 0 0 14px rgba(249, 115, 22, 0.6), 0 0 36px rgba(249, 115, 22, 0.3);
   /* Default glow is secondary (Cyan) */
@@ -508,6 +520,10 @@ html::-webkit-scrollbar {
 .industrial-card>* {
   position: relative;
   z-index: 1;
+}
+
+.industrial-card:hover .contact-social-link {
+  color: var(--clr-primary);
 }
 
 /* =============================================

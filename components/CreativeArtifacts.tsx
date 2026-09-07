@@ -5,17 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Aperture, Image as ImageIcon, X, ZoomIn, ChevronRight, ArrowLeft } from "lucide-react";
 import { artifacts, Artifact } from "@/data/artifacts";
 import SectionHeader from "@/components/ui/SectionHeader";
+import ParticleField from "@/components/ParticleField";
 
 // --- Sub-components ---
 
-const ArtifactCard = ({ 
-  artifact, 
-  index, 
-  onClick 
-}: { 
-  artifact: Artifact; 
-  index: number; 
-  onClick: () => void 
+const ArtifactCard = ({
+  artifact,
+  index,
+  onClick
+}: {
+  artifact: Artifact;
+  index: number;
+  onClick: () => void
 }) => {
   const spanClasses = {
     small: "col-span-1 row-span-1",
@@ -45,9 +46,9 @@ const ArtifactCard = ({
         <div className="scanline-overlay opacity-30 group-hover:opacity-10 transition-opacity" />
       </div>
 
-      <motion.div 
+      <motion.div
         className="absolute inset-0 bg-[var(--clr-primary)] opacity-0 z-10 pointer-events-none"
-        whileHover={{ 
+        whileHover={{
           opacity: [0, 0.1, 0, 0.05, 0],
           transition: { duration: 0.3, repeat: Infinity }
         }}
@@ -115,8 +116,13 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
     <section
       id="artifacts"
       className={`vertical-section ${!isGalleryPage ? 'h-screen overflow-hidden' : 'min-h-screen gallery-page-section'}`}
-      style={{ background: "var(--bg-void)" }}
+      style={{ position: "relative" }}
     >
+      {/* Ambient particle-dust background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -10 }}>
+        <ParticleField count={160} />
+      </div>
+
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -131,12 +137,12 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
       </motion.div>
 
       {isGalleryPage && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           className="absolute top-8 right-8 z-50"
         >
-          <a 
+          <a
             href="/"
             className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-[var(--clr-muted)] hover:text-[var(--clr-primary)] transition-all uppercase group bg-black/20 backdrop-blur-md px-4 py-2 border border-[var(--clr-dim)] hover:border-[var(--clr-primary)]"
           >
@@ -149,23 +155,23 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
       {/* Grid */}
       <div className={`grid grid-cols-1 md:grid-cols-4 gap-4 ${isGalleryPage ? 'auto-rows-[300px]' : 'auto-rows-[180px] md:auto-rows-[220px]'} w-full max-w-7xl mx-auto px-4`}>
         {displayArtifacts.map((artifact, i) => (
-          <ArtifactCard 
-            key={artifact.id} 
-            artifact={artifact} 
-            index={i} 
-            onClick={() => setSelectedId(artifact.id)} 
+          <ArtifactCard
+            key={artifact.id}
+            artifact={artifact}
+            index={i}
+            onClick={() => setSelectedId(artifact.id)}
           />
         ))}
       </div>
 
       {/* Call to Action */}
       {!isGalleryPage && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           className="mt-8 flex justify-center"
         >
-          <a 
+          <a
             href="/gallery"
             className="group relative px-8 py-3 bg-transparent border border-[var(--clr-primary)] overflow-hidden transition-all hover:pr-12"
           >
@@ -191,7 +197,7 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
               className="absolute inset-0 lightbox-backdrop"
               onClick={() => setSelectedId(null)}
             />
-            
+
             <motion.div
               layoutId={`artifact-${selectedId}`}
               className="relative z-10 w-full max-w-5xl aspect-video md:aspect-auto md:h-full flex items-center justify-center"
@@ -201,7 +207,7 @@ export default function CreativeArtifacts({ isGalleryPage = false }: { isGallery
                 alt={selectedArtifact.title}
                 className="max-w-full max-h-full object-contain border border-[var(--clr-dim)] shadow-[0_0_50px_rgba(155,111,209,0.2)]"
               />
-              
+
               <button
                 className="absolute top-4 right-4 text-[var(--clr-text)] hover:text-[var(--clr-primary)] transition-colors p-2 bg-black/40 backdrop-blur-md rounded-full border border-[var(--clr-dim)]"
                 onClick={() => setSelectedId(null)}

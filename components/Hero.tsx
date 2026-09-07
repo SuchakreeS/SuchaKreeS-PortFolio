@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown, Zap, Code2, Skull } from "lucide-react";
 import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
+import ParticleField from "@/components/ParticleField";
 
 const TAGLINES = [
   "Full-Stack Developer",
@@ -57,18 +58,9 @@ export default function Hero() {
         textAlign: "center",
       }}
     >
-      {/* Atmospheric Background Orb */}
-      <div 
-        className="absolute inset-0 pointer-events-none overflow-hidden" 
-        style={{ zIndex: -10 }}
-      >
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] blur-[80px] opacity-60"
-          style={{
-            background: "var(--hero-orb-gradient)",
-            borderRadius: "50%",
-          }}
-        />
+      {/* Ambient particle-dust background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -10 }}>
+        <ParticleField count={220} />
       </div>
 
       <motion.div
@@ -156,34 +148,6 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <a
-        href="#about"
-        onClick={(e) => {
-          e.preventDefault();
-          document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-        }}
-        className="animate-fade-up delay-500"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "6px",
-          color: "var(--clr-muted)",
-          textDecoration: "none",
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.65rem",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          transition: "color 0.25s",
-          animation: "fadeUp 0.7s ease forwards, blink-scroll 2s ease-in-out infinite 1s",
-        }}
-        onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--clr-primary)")}
-        onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--clr-muted)")}
-      >
-        Scroll
-        <ChevronDown size={16} style={{ animation: "bounceRight 1.5s infinite", transform: "rotate(-90deg)" }} />
-      </a>
 
       {/* Horizontal military divider - bottom */}
       <div className="stud-row animate-fade-up delay-600" style={{ width: "min(600px, 90%)", marginTop: "2.5rem" }}>

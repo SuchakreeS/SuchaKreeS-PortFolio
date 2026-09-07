@@ -1,11 +1,12 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Atom, Database, Code, Terminal, Server, HelpCircle,
   Cpu, Layout, Layers, RefreshCw, GitBranch, Ship, Globe
 } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import ParticleField from "@/components/ParticleField";
 
 interface TechItem {
   key: string;
@@ -321,90 +322,6 @@ const playClickSound = () => {
   }
 };
 
-const DriftingCodeBackground = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    let animationId: number;
-    let width = canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;
-    let height = canvas.height = canvas.parentElement?.clientHeight || 600;
-
-    const handleResize = () => {
-      width = canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;
-      height = canvas.height = canvas.parentElement?.clientHeight || 600;
-    };
-    window.addEventListener("resize", handleResize);
-
-    const codeLines = [
-      "import { useEffect } from 'react';",
-      "const osc = ctx.createOscillator();",
-      "ctx.currentTime + 0.05",
-      "transform: rotateX(45deg);",
-      "animate={{ translateY: pressed }}",
-      "const [active, setActive] = useState();",
-      "const ctx = canvas.getContext('2d');",
-      "using use = useUsing('use');",
-      "const playClickSound = () => {",
-      "boxShadow: pressed ? '0px 1px' : '0px 8px'",
-      "const filter = ctx.createBiquadFilter();",
-      "clip-path: polygon(0 0, 100% 0);",
-      "framer-motion-springs-active",
-      "mongodb://localhost:27017/portfolio",
-      "docker run -p 3000:3000 nextjs-site"
-    ];
-
-    const columns = Math.floor(width / 180);
-    const particles = Array.from({ length: columns }, (_, idx) => ({
-      x: idx * 180 + Math.random() * 50,
-      y: Math.random() * height + height,
-      speed: 0.3 + Math.random() * 0.3,
-      text: codeLines[Math.floor(Math.random() * codeLines.length)],
-      opacity: 0.03 + Math.random() * 0.06
-    }));
-
-    const render = () => {
-      ctx.clearRect(0, 0, width, height);
-      ctx.font = "11px 'JetBrains Mono', monospace";
-      ctx.fillStyle = "rgba(16, 185, 129, 1)";
-
-      particles.forEach((p) => {
-        ctx.fillStyle = `rgba(16, 185, 129, ${p.opacity})`;
-        ctx.fillText(p.text, p.x, p.y);
-
-        p.y -= p.speed;
-
-        if (p.y < -20) {
-          p.y = height + 30;
-          p.x = Math.random() * width;
-          p.text = codeLines[Math.floor(Math.random() * codeLines.length)];
-          p.speed = 0.3 + Math.random() * 0.3;
-          p.opacity = 0.03 + Math.random() * 0.06;
-        }
-      });
-
-      if (!prefersReducedMotion) {
-        animationId = requestAnimationFrame(render);
-      }
-    };
-
-    render();
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none opacity-30 z-0" />;
-};
-
 export default function TechStack() {
   const [focusedTech, setFocusedTech] = useState<TechItem>(techSkills[1]); // Default React.js / Next.js
   const [activeKey, setActiveKey] = useState<string | null>(null);
@@ -500,7 +417,9 @@ export default function TechStack() {
       }}
     >
       {/* Drifting Code hacker background decoration */}
-      <DriftingCodeBackground />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <ParticleField count={180} />
+      </div>
 
       <div className="relative z-10 w-full" style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
