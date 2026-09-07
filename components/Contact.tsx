@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
 import { Mail, Github, Linkedin, MapPin, Copy, Check } from "lucide-react";
+import dynamic from "next/dynamic";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Card from "@/components/ui/Card";
-import ParticleField from "@/components/ParticleField";
+const ParticleField = dynamic(() => import("@/components/ParticleField"), { ssr: false });
 
 const EMAIL = "suchakreesattanusorn@gmail.com";
 

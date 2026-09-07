@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react";
 import { ChevronDown, Zap, Code2, Skull } from "lucide-react";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import Button from "@/components/ui/Button";
-import ParticleField from "@/components/ParticleField";
+const ParticleField = dynamic(() => import("@/components/ParticleField"), { ssr: false });
 
 const TAGLINES = [
   "Full-Stack Developer",

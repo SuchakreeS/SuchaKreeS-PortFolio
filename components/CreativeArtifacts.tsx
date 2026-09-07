@@ -4,8 +4,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Aperture, Image as ImageIcon, X, ZoomIn, ChevronRight, ArrowLeft } from "lucide-react";
 import { artifacts, Artifact } from "@/data/artifacts";
+import dynamic from "next/dynamic";
 import SectionHeader from "@/components/ui/SectionHeader";
-import ParticleField from "@/components/ParticleField";
+const ParticleField = dynamic(() => import("@/components/ParticleField"), { ssr: false });
 
 // --- Sub-components ---
 

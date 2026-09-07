@@ -5,8 +5,9 @@ import {
   Atom, Database, Code, Terminal, Server, HelpCircle,
   Cpu, Layout, Layers, RefreshCw, GitBranch, Ship, Globe
 } from "lucide-react";
+import dynamic from "next/dynamic";
 import SectionHeader from "@/components/ui/SectionHeader";
-import ParticleField from "@/components/ParticleField";
+const ParticleField = dynamic(() => import("@/components/ParticleField"), { ssr: false });
 
 interface TechItem {
   key: string;

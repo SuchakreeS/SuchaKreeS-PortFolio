@@ -80,15 +80,39 @@ export default function ParticleField({ count = 220 }: ParticleFieldProps) {
   const { theme } = useTheme();
   const meta = themes.find((t) => t.id === theme) ?? themes[0];
   const [reducedMotion, setReducedMotion] = useState(false);
+  // Undecided until the effect below runs client-side, so we don't flash a
+  // canvas on devices we're about to skip it for.
+  const [shouldRender, setShouldRender] = useState<boolean | null>(null);
   const pointer = usePointerParallax();
 
   useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(query.matches);
-    const handleChange = () => setReducedMotion(query.matches);
-    query.addEventListener("change", handleChange);
-    return () => query.removeEventListener("change", handleChange);
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(motionQuery.matches);
+    const handleMotionChange = () => setReducedMotion(motionQuery.matches);
+    motionQuery.addEventListener("change", handleMotionChange);
+
+    // Skip mounting the WebGL canvas at all on coarse-pointer (touch) /
+    // narrow-viewport devices and when reduced motion is requested — these
+    // are ambient decoration, not worth the GPU/battery cost there, and we
+    // have several of these mounted across the page.
+    const coarseQuery = window.matchMedia("(pointer: coarse)");
+    const narrowQuery = window.matchMedia("(max-width: 768px)");
+    const evaluate = () =>
+      setShouldRender(!motionQuery.matches && !coarseQuery.matches && !narrowQuery.matches);
+    evaluate();
+    coarseQuery.addEventListener("change", evaluate);
+    narrowQuery.addEventListener("change", evaluate);
+    motionQuery.addEventListener("change", evaluate);
+
+    return () => {
+      motionQuery.removeEventListener("change", handleMotionChange);
+      coarseQuery.removeEventListener("change", evaluate);
+      narrowQuery.removeEventListener("change", evaluate);
+      motionQuery.removeEventListener("change", evaluate);
+    };
   }, []);
+
+  if (!shouldRender) return null;
 
   return (
     <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
