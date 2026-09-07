@@ -219,6 +219,55 @@ const techSkills: TechItem[] = [
       </svg>
     )
   },
+
+  // Row 4 (Python / AI tooling)
+  {
+    key: "V",
+    name: "Python",
+    desc: "Scripting & Backend",
+    tagline: "General-purpose scripting powering bots, background loops, and local AI pipelines!",
+    colorName: "blue",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-7 h-7">
+        <path d="M48 8 C36 8, 30 12, 30 20 V30 H50 V33 H20 C12 33, 8 40, 8 50 C8 60, 12 66, 20 66 H27 V56 C27 47, 34 40, 43 40 H63 C70 40, 76 34, 76 27 V20 C76 12, 66 8, 48 8 Z" fill="#3776AB" />
+        <path d="M52 92 C64 92, 70 88, 70 80 V70 H50 V67 H80 C88 67, 92 60, 92 50 C92 40, 88 34, 80 34 H73 V44 C73 53, 66 60, 57 60 H37 C30 60, 24 66, 24 73 V80 C24 88, 34 92, 52 92 Z" fill="#FFD43B" />
+        <circle cx="22" cy="19" r="3.5" fill="#FFF" />
+        <circle cx="78" cy="81" r="3.5" fill="#FFF" />
+      </svg>
+    )
+  },
+  {
+    key: "B",
+    name: "Google Gemini API",
+    desc: "LLM Function-Calling",
+    tagline: "Conversational reasoning with live tool/function calling for real-world assistant tasks!",
+    colorName: "purple",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-7 h-7">
+        <path d="M50 5 C52 30, 70 48, 95 50 C70 52, 52 70, 50 95 C48 70, 30 52, 5 50 C30 48, 48 30, 50 5 Z" fill="url(#geminiGrad)" />
+        <defs>
+          <linearGradient id="geminiGrad" x1="0" y1="0" x2="100" y2="100">
+            <stop offset="0%" stopColor="#4285F4" />
+            <stop offset="50%" stopColor="#9B72CB" />
+            <stop offset="100%" stopColor="#D96570" />
+          </linearGradient>
+        </defs>
+      </svg>
+    )
+  },
+  {
+    key: "N",
+    name: "PyTorch / Whisper / Piper",
+    desc: "Local AI/ML Runtime",
+    tagline: "On-device speech-to-text, text-to-speech, and neural net inference — no cloud round-trip!",
+    colorName: "orange",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-7 h-7">
+        <path d="M50 12 C36 24, 30 38, 30 52 C30 68, 40 80, 50 80 C60 80, 70 68, 70 52 C70 44, 66 36, 58 28 C60 36, 58 42, 54 42 C50 42, 50 36, 50 30 C50 24, 52 18, 50 12 Z" fill="none" stroke="#EE4C2C" strokeWidth="5" />
+        <circle cx="50" cy="56" r="10" fill="none" stroke="#EE4C2C" strokeWidth="5" />
+      </svg>
+    )
+  },
 ];
 
 const keyToTechMap = techSkills.reduce((acc, skill) => {
@@ -726,8 +775,8 @@ export default function TechStack() {
                 </div>
 
                 {/* Staggered Row 3 */}
-                <div className="flex gap-4 pl-8 sm:pl-12">
-                  {techSkills.slice(10, 13).map((skill) => {
+                <div className="flex gap-4 pl-8 sm:pl-12 flex-wrap">
+                  {techSkills.slice(10, 16).map((skill) => {
                     const pressed = activeKey === skill.key || focusedTech.key === skill.key;
                     const colors = getThemeKeycapColors(skill.colorName);
                     return (

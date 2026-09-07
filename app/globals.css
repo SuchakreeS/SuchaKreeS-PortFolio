@@ -53,6 +53,9 @@
   --project-accent-wong: #990000;
   --project-accent-velvet: #7A0000;
   --project-accent-luxe: #4A0000;
+  --project-accent-helena: #8B0000;
+  --project-accent-steam: #B22222;
+  --project-accent-poker: #5C0000;
   --card-glow: var(--glow-purple);
   --card-border: var(--clr-primary);
   --tech-border: var(--clr-dim);
@@ -125,6 +128,9 @@
   --project-accent-wong: #990000;
   --project-accent-velvet: #7A0000;
   --project-accent-luxe: #4A0000;
+  --project-accent-helena: #8B0000;
+  --project-accent-steam: #B22222;
+  --project-accent-poker: #5C0000;
   --card-glow: var(--glow-purple);
   --card-border: var(--clr-primary);
   --tech-border: var(--clr-dim);
@@ -174,6 +180,9 @@
   --project-accent-wong: var(--clr-secondary);
   --project-accent-velvet: var(--clr-secondary);
   --project-accent-luxe: var(--clr-accent);
+  --project-accent-helena: var(--clr-primary);
+  --project-accent-steam: var(--clr-secondary);
+  --project-accent-poker: var(--clr-accent);
   --card-glow-wong: 0 0 14px rgba(249, 115, 22, 0.6), 0 0 36px rgba(249, 115, 22, 0.3);
   --card-glow-velvet: 0 0 14px rgba(249, 115, 22, 0.6), 0 0 36px rgba(249, 115, 22, 0.3);
   --card-glow-luxe: 0 0 14px rgba(249, 115, 22, 0.6), 0 0 36px rgba(249, 115, 22, 0.3);
@@ -482,6 +491,18 @@ html::-webkit-scrollbar {
 
 .project-card-luxe-fuel {
   --current-card-glow: var(--card-glow-luxe, var(--card-glow));
+}
+
+.project-card-helena {
+  --current-card-glow: var(--card-glow-helena, var(--card-glow));
+}
+
+.project-card-steam-sale-bot {
+  --current-card-glow: var(--card-glow-steam, var(--card-glow));
+}
+
+.project-card-poker-chips {
+  --current-card-glow: var(--card-glow-poker, var(--card-glow));
 }
 
 .industrial-card>* {

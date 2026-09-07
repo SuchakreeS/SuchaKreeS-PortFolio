@@ -1,5 +1,5 @@
 "use client";
-import { ExternalLink, Github, Smartphone, Sunset, Gauge } from "lucide-react";
+import { ExternalLink, Github, Smartphone, Sunset, Gauge, Mic, Bell, Coins } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Card from "@/components/ui/Card";
@@ -60,6 +60,52 @@ const projects: Project[] = [
     icon: <Gauge size={22} />,
     accent: "var(--project-accent-luxe)",
     links: [
+      { label: "GitHub", href: "https://github.com/SuchakreeS", icon: <Github size={14} /> },
+    ],
+  },
+  {
+    id: "helena",
+    title: "Helena",
+    subtitle: "Voice-Controlled AI Assistant",
+    description:
+      "A JARVIS-styled voice assistant running as a continuous loop: microphone audio is transcribed locally with Whisper, routed to a Gemini LLM with live function-calling tools (time, weather), and the reply is synthesized back into speech with Piper TTS. Conversation history persists in-memory across turns for contextual dialogue.",
+    philosophy:
+      "A local-first cockpit for talking to a model — record, think, speak, repeat — built to feel like an assistant that's actually listening, not just responding.",
+    tags: ["Python", "Gemini API", "Whisper", "Piper TTS", "sounddevice"],
+    icon: <Mic size={22} />,
+    accent: "var(--project-accent-helena)",
+    links: [
+      { label: "GitHub", href: "https://github.com/SuchakreeS", icon: <Github size={14} /> },
+    ],
+  },
+  {
+    id: "steam-sale-bot",
+    title: "SteamSaleBot",
+    subtitle: "Discord Steam Sale Watcher",
+    description:
+      "A Discord bot that watches user-submitted Steam games and pings the server (DM + deduplicated channel message) the moment a discount is newly detected. A background loop polls Steam's live pricing every 60 seconds; migrated off a killed unofficial wishlist endpoint onto the official IWishlistService Web API after Valve broke it.",
+    philosophy:
+      "A from-scratch Python project built to actually learn the language — Cogs, background tasks, and a live third-party API that changes under you.",
+    tags: ["Python", "discord.py", "Steam Web API", "JSON persistence"],
+    icon: <Bell size={22} />,
+    accent: "var(--project-accent-steam)",
+    links: [
+      { label: "GitHub", href: "https://github.com/SuchakreeS", icon: <Github size={14} /> },
+    ],
+  },
+  {
+    id: "poker-chips",
+    title: "PokerChips",
+    subtitle: "Chip Stack & Turn Tracker",
+    description:
+      "A shared-screen web app for home poker games played with real physical cards — it doesn't know anyone's hand, but it manages stacks, blinds, No-Limit/Pot-Limit/Limit betting structures, automatic pot and side-pot calculation, turn order, and manual showdown payouts, so the table doesn't have to do the math by hand.",
+    philosophy:
+      "Game logic kept as a pure, UI-agnostic module from day one, so the same engine can later drive real-time multiplayer without a rewrite.",
+    tags: ["React", "TypeScript", "Vite", "Tailwind CSS v4", "Vitest"],
+    icon: <Coins size={22} />,
+    accent: "var(--project-accent-poker)",
+    links: [
+      { label: "Live Site", href: "https://poker-chips-smoky.vercel.app", icon: <ExternalLink size={14} /> },
       { label: "GitHub", href: "https://github.com/SuchakreeS", icon: <Github size={14} /> },
     ],
   },
