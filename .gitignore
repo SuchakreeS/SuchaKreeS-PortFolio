@@ -33,3 +33,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# fermenter figure preview pages (rebuilt by scripts/fermenter/build.mjs)
+/scripts/fermenter/preview*.html

@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import FermenterIntro from "@/components/FermenterIntro";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import TechStack from "@/components/TechStack";
@@ -18,6 +19,7 @@ export default function Home() {
       <ThemeSwitcher />
       <div className="main-content-wrapper">
         <main style={{ display: "contents" }}>
+          <FermenterIntro />
           <Hero />
           <About />
           <TechStack />
